@@ -1,0 +1,127 @@
+{
+  "runsPerScenario": 20000,
+  "seed": 20261023,
+  "model": "16 buyers; two per emotion; unseen weight 2 versus seen weight 1; gift at fifth settled sale; independent supplied emotion draws; other 7 emotions equally split",
+  "scenarios": [
+    {
+      "anxietyShare": 0.125,
+      "metrics": {
+        "firstClock": {
+          "mean": 13.96,
+          "p50": 10,
+          "p90": 30
+        },
+        "nextClockGap": {
+          "mean": 17.4,
+          "p50": 13,
+          "p90": 39
+        },
+        "clockGift": {
+          "mean": 80.02,
+          "p50": 75,
+          "p90": 124
+        },
+        "firstAnyGift": {
+          "mean": 32.22,
+          "p50": 32,
+          "p90": 42
+        },
+        "allBuyers": {
+          "mean": 44.15,
+          "p50": 42,
+          "p90": 63
+        },
+        "allGifts": {
+          "mean": 152.03,
+          "p50": 148,
+          "p90": 188
+        }
+      },
+      "atEightSalesPerDay": {
+        "clockGiftByDay7": 0.2594,
+        "clockGiftByDay14": 0.84385,
+        "anyGiftByDay7": 0.9999
+      }
+    },
+    {
+      "anxietyShare": 0.0625,
+      "metrics": {
+        "firstClock": {
+          "mean": 27.75,
+          "p50": 20,
+          "p90": 62
+        },
+        "nextClockGap": {
+          "mean": 34.77,
+          "p50": 25,
+          "p90": 77
+        },
+        "clockGift": {
+          "mean": 159.83,
+          "p50": 150,
+          "p90": 252
+        },
+        "firstAnyGift": {
+          "mean": 31.11,
+          "p50": 31,
+          "p90": 41
+        },
+        "allBuyers": {
+          "mean": 52.01,
+          "p50": 46,
+          "p90": 80
+        },
+        "allGifts": {
+          "mean": 203.56,
+          "p50": 192,
+          "p90": 284
+        }
+      },
+      "atEightSalesPerDay": {
+        "clockGiftByDay7": 0.02475,
+        "clockGiftByDay14": 0.2638,
+        "anyGiftByDay7": 1
+      }
+    },
+    {
+      "anxietyShare": 0.25,
+      "metrics": {
+        "firstClock": {
+          "mean": 7.05,
+          "p50": 5,
+          "p90": 15
+        },
+        "nextClockGap": {
+          "mean": 8.66,
+          "p50": 6,
+          "p90": 19
+        },
+        "clockGift": {
+          "mean": 40.03,
+          "p50": 38,
+          "p90": 61
+        },
+        "firstAnyGift": {
+          "mean": 27.62,
+          "p50": 28,
+          "p90": 37
+        },
+        "allBuyers": {
+          "mean": 49.51,
+          "p50": 47,
+          "p90": 71
+        },
+        "allGifts": {
+          "mean": 173.44,
+          "p50": 168,
+          "p90": 216
+        }
+      },
+      "atEightSalesPerDay": {
+        "clockGiftByDay7": 0.85455,
+        "clockGiftByDay14": 0.99885,
+        "anyGiftByDay7": 1
+      }
+    }
+  ]
+}
