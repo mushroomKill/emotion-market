@@ -8,7 +8,7 @@ const Game = (() => {
     return items[items.length-1];
   };
   const weather = () => weighted(['晴天','阴天','雨天'],[2,1,1]);
-  const fresh = (now=Date.now()) => ({version:1,name:'小橘',named:false,coins:80,day:1,weather:weather(),demand:'平静',bag:[],bubbles:['开心','焦虑'],slots:[null,null,null],lastBubble:now,lastSeen:now,petAt:0,petSession:false,lonely:false,newDecorUntil:0,returnedUntil:0,trip:null,postcards:[],unread:[],souvenirs:[],owned:[],worn:{},wornEver:[],friends:{},gifts:[],facts:[],rewards:[],sales:0,freeRice:0,pity:0,parcel:[],returnReport:null,startedTrips:0,tutorial:0});
+  const fresh = (now=Date.now()) => ({version:1,name:'小橘',named:false,coins:120,day:1,weather:weather(),demand:'平静',bag:[],bubbles:['开心','焦虑'],slots:[null,null,null],lastBubble:now,lastSeen:now,petAt:0,petSession:false,lonely:false,newDecorUntil:0,returnedUntil:0,trip:null,postcards:[],unread:[],souvenirs:[],owned:[],worn:{},wornEver:[],friends:{},gifts:[],facts:[],rewards:[],sales:0,freeRice:0,pity:0,parcel:[],returnReport:null,startedTrips:0,tutorial:0});
   let state;
   let storageOK=true;
   try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):fresh();if(state.version!==1||!Array.isArray(state.bag)||!Array.isArray(state.slots))throw Error('invalid');}catch{state=fresh();}
@@ -22,9 +22,9 @@ const Game = (() => {
     const w=DATA.emotions.map(e=>{
       let x=1;
       if(state.weather==='晴天'&&e==='开心')x*=2;
-      if(state.weather==='阴天'&&['迷茫','疲惫'].includes(e))x*=1.5;
+      if(state.weather==='阴天'&&['焦虑','迷茫'].includes(e))x*=1.5;
       if(state.weather==='雨天'){if(e==='悲伤')x*=2;if(e==='平静')x*=1.5;}
-      if(now<state.returnedUntil&&['开心','疲惫'].includes(e))x*=2;
+      if(now<state.returnedUntil&&e==='疲惫')x*=2;
       if(now<state.newDecorUntil&&e==='开心')x*=2;
       if(state.lonely&&e==='孤独')x*=3;
       if(state.petSession&&e==='平静')x*=1.5;
@@ -51,9 +51,9 @@ const Game = (() => {
       if(now>=t.end){
         const s=weighted(p.souvenirs,p.souvenirs.map(v=>state.souvenirs.includes(v)?1:3));
         const repeat=state.souvenirs.includes(s);if(repeat)state.coins+=20;else add(state.souvenirs,s);
-        const cards=[choose(p.emotions),choose(['开心','疲惫'])];state.parcel.push(...cards);flushParcel();
+        const cards=[p.emotions[0],p.emotions[1]];state.parcel.push(...cards);flushParcel();
         let rare=null;
-        if(state.pity>=5||Math.random()<[.1,.2,.35][t.food]){
+        if(state.pity>=7||Math.random()<[.05,.1,.2][t.food]){
           const missing=DATA.decorations.filter(d=>!d.price&&!state.owned.includes(d.name));
           rare=!state.owned.includes(p.rare)?p.rare:missing.length?choose(missing).name:null;
           if(rare)add(state.owned,rare);state.pity=0;
